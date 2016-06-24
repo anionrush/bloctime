@@ -3,6 +3,7 @@
          var Timer = {};
          
          Timer.state = "Start";
+         Timer.counter = 0;
          Timer.currentTime = 1500;
          Timer.onBreak = function(){
              return Timer.state == "Break" || Timer.state == "New Pomodoro";
@@ -19,7 +20,14 @@
                 Timer.state = "Start"
             }
             else if(Timer.state == "Break"){
-                Timer.currentTime = 300;
+                Timer.counter++;
+                if( Timer.counter % 4 == 0){
+                    Timer.currentTime = 1800; 
+                }
+                else{
+                    Timer.currentTime = 500;  
+                }
+                
                 Timer.state = "New Pomodoro";
             }
             else if(Timer.state == "New Pomodoro"){
