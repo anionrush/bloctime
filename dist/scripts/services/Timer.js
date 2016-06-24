@@ -4,28 +4,35 @@
          
          Timer.state = "Start";
          Timer.currentTime = 1500;
+         Timer.onBreak = function(){
+             return Timer.state == "Break" || Timer.state == "New Pomodoro";
+         };
          
-         Timer.getCurrentTime = function(){
-             return Timer.currentTime;
-         }
 
          Timer.changeState = function(){
+
             if(Timer.state == "Start"){ 
                 Timer.state = "Reset";
             }
             else if(Timer.state == "Reset"){
                 Timer.currentTime = 1500;
-                Timer.state = "Start";
-                console.log(Timer.currentTime)
+                Timer.state = "Start"
             }
-//            else if(Timer.state == "Break"){ 
-//                Timer.state = "Start";
-//            }
+            else if(Timer.state == "Break"){
+                Timer.currentTime = 300;
+                Timer.state = "New Pomodoro";
+            }
+            else if(Timer.state == "New Pomodoro"){
+                Timer.currentTime = 1500;
+                Timer.state = "Start";
+            }
          };
+         
+         
           return Timer;
      }
  
      angular
-         .module('bloctime')
+         .module('bloctime') 
          .factory('Timer', Timer);
  })();

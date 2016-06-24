@@ -21,4 +21,6 @@
     angular
         .module('bloctime', ['ui.router', 'firebase'])
         .config(config);
+    
+    bloctime.constant('LANDING', 'LandingCtrl as landing'); 
  })();

@@ -17,12 +17,26 @@
                     if(timer.state == "Reset" && scope.time > 0 ){ 
                         scope.time -= 1; 
                         timer.currentTime = scope.time;
+                        
+                        if(timer.currentTime == 0){
+                            timer.state = "Break";
+                        }
+                    }
+                    else if(timer.state == "New Pomodoro" && scope.time > 0 ){ 
+                        scope.time -= 1; 
+                        timer.currentTime = scope.time;
+                        
+                        if(timer.currentTime == 0){
+                            timer.currentTime = 1500;
+                            timer.state = "Start";
+                            
+                        }
                     }
                 }
 
                 loopTime = $interval(decTime, 1000);
 
-                scope.$watch(timer.state, decTime)
+                scope.$watch(timer.currentTime, decTime)
                 
             }
         }
