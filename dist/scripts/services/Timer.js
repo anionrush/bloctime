@@ -4,7 +4,7 @@
          
          Timer.state = "Start";
          Timer.counter = 0;
-         Timer.currentTime = 1500;
+         Timer.currentTime = 5;
          Timer.onBreak = function(){
              return Timer.state == "Break" || Timer.state == "New Pomodoro";
          };
@@ -16,7 +16,7 @@
                 Timer.state = "Reset";
             }
             else if(Timer.state == "Reset"){
-                Timer.currentTime = 1500;
+                Timer.currentTime = 5;
                 Timer.state = "Start"
             }
             else if(Timer.state == "Break"){
@@ -25,16 +25,22 @@
                     Timer.currentTime = 1800; 
                 }
                 else{
-                    Timer.currentTime = 500;  
+                    Timer.currentTime = 2;  
                 }
                 
                 Timer.state = "New Pomodoro";
             }
             else if(Timer.state == "New Pomodoro"){
-                Timer.currentTime = 1500;
+                Timer.currentTime = 5;
                 Timer.state = "Start";
             }
          };
+         
+        Timer.sound = new buzz.sound( "assets/music/ding", {
+                formats: ['mp3'],
+                preload: true
+            });   
+
          
          
           return Timer;

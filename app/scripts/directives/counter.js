@@ -17,9 +17,9 @@
                     if(timer.state == "Reset" && scope.time > 0 ){ 
                         scope.time -= 1; 
                         timer.currentTime = scope.time;
-                        
                         if(timer.currentTime == 0){
                             timer.state = "Break";
+                            timer.sound.play();
                         }
                     }
                     else if(timer.state == "New Pomodoro" && scope.time > 0 ){ 
@@ -27,8 +27,9 @@
                         timer.currentTime = scope.time;
                         
                         if(timer.currentTime == 0){
-                            timer.currentTime = 1500;
+                            timer.currentTime = 5;
                             timer.state = "Start";
+                            timer.sound.play();
                             
                         }
                     }
