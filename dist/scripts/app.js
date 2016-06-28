@@ -1,3 +1,3 @@
 (function() {
-    angular.module('bloctime', [])
+    angular.module('bloctime', ["firebase"])
  })();

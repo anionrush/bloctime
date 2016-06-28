@@ -42,8 +42,8 @@
     }
 
 angular.module('bloctime')
-    .constant("T_25", 5)
-    .constant("T_5", 3)
-    .constant("T_30", 10)
+    .constant("T_25", 1500)
+    .constant("T_5", 300)
+    .constant("T_30", 1800)
     .factory('Timer', Timer);
 })();
