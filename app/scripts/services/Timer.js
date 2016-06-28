@@ -1,52 +1,49 @@
-(function() {
-     function Timer() {
-         var Timer = {};
-         
-         Timer.state = "Start";
-         Timer.counter = 0;
-         Timer.currentTime = 5;
-         Timer.onBreak = function(){
-             return Timer.state == "Break" || Timer.state == "New Pomodoro";
-         };
-         
-
-         Timer.changeState = function(){
-
-            if(Timer.state == "Start"){ 
-                Timer.state = "Reset";
-            }
-            else if(Timer.state == "Reset"){
-                Timer.currentTime = 5;
-                Timer.state = "Start"
-            }
-            else if(Timer.state == "Break"){
-                Timer.counter++;
-                if( Timer.counter % 4 == 0){
-                    Timer.currentTime = 1800; 
-                }
-                else{
-                    Timer.currentTime = 2;  
-                }
-                
-                Timer.state = "New Pomodoro";
-            }
-            else if(Timer.state == "New Pomodoro"){
-                Timer.currentTime = 5;
-                Timer.state = "Start";
-            }
-         };
-         
+//Timer service
+(function() {  
+    function Timer(T_25, T_5, T_30) {
+        
+        Timer.state = "Start";
+        Timer.counter = T_25;
+        Timer.break = 0;
+        
         Timer.sound = new buzz.sound( "assets/music/ding", {
-                formats: ['mp3'],
-                preload: true
-            });   
+            formats: ['mp3'],
+            preload: true
+        }); 
 
-         
-         
-          return Timer;
-     }
- 
-     angular
-         .module('bloctime') 
-         .factory('Timer', Timer);
- })();
+        Timer.changeState = function(){
+            switch(Timer.state) {
+                case "Start":
+                    Timer.state = "Reset"
+                    break;
+                case "Reset":
+                    Timer.state = "Start"
+                    Timer.counter = T_25;
+                    break;
+                case "Break":
+                    Timer.state = "Restart Pomodoro"
+                    Timer.break++;
+                        if( Timer.break % 4 == 0){
+                            Timer.counter = T_30; 
+                        }
+                        else{
+                            Timer.counter = T_5;  
+                        }
+                    break;
+                case "Restart Pomodoro":
+                    Timer.state = "Start"
+                    Timer.counter = T_25;
+                    break;
+            }
+        }
+        
+        
+        return Timer;
+    }
+
+angular.module('bloctime')
+    .constant("T_25", 5)
+    .constant("T_5", 3)
+    .constant("T_30", 10)
+    .factory('Timer', Timer);
+})();
