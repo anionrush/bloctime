@@ -1,15 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="bloctime">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Bloc Base Project</title>
+    <title>Pomodoro</title>
     <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
-<body>
-    <script src="/scripts/app.js"></script>
-    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+<body >
+    
+    <div class="container" ng-cloak >
+        <div class="class-left" ng-controller="TaskCtrl as tsk">
+            <form ng-submit= "tsk.taskServ.addUser()">
+                <h2>Task History</h2>
+                <input class="task-input" ng-model="tsk.taskServ.taskText" placeholder="Completed Task Text">
+                <button class="button-input" type="submit" > Add Task</button>
+            </form>
+            <br>
+        
+            <div ng-repeat="task in tsk.taskServ.tasks ">
+                <div class="task-style " ng-class-odd="'task-odd'">{{($index+1) + ". " + task.text}}</div>
+            </div>
+        </div>
+
+        <div class="class-center" ng-controller="BtnCtrl as t_btn" >
+
+            <p class="time-style" time-count>
+                {{t_btn.timer.counter | timecode}}
+            </p>
+
+            <button class="btn btn-success time-btn" ng-click="t_btn.timer.changeState()" > 
+                {{t_btn.timer.state}} 
+            </button>
+
+        </div>       
+        
+    </div>
+
+    
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
-    <script src="https://cdn.rawgit.com/angular-ui/ui-router/0.2.18/release/angular-ui-router.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.0/buzz.min.js"></script>
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/controllers/BtnCtrl.js"></script>
+    <script src="/scripts/controllers/TaskCtrl.js"></script>
+    <script src="/scripts/services/Timer.js"></script>
+    <script src="/scripts/services/Task.js"></script>
+    <script src="/scripts/directives/timeCount.js"></script>
+    <script src="/scripts/filters/timecode.js"></script>
+    <script>
+        
+        
+    </script>
 </body>
 </html>

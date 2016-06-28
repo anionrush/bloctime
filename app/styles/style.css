@@ -1,0 +1,44 @@
+.class-center {
+    position: absolute;
+    top: 45%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.class-left {
+    margin-top: 10px;
+    height:100vh;
+    width: 300px;
+    position:absolute; 
+    left: 20px;
+}
+
+.task-input{
+    width: 200px;
+}
+
+.button-input{
+    width:90px
+}
+
+.time-style{
+    font-size: 400%; 
+    width: 150px; 
+    text-align: center;
+}
+
+.time-btn{
+    width: 150px;
+}
+
+.task-style{
+    font-size:150%;
+}
+
+.task-odd{
+    background-color: #dddddd
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
