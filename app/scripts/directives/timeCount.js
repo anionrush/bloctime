@@ -16,7 +16,8 @@
                         Timer.counter -= 1; 
                         if(Timer.counter == 0){
                             Timer.state = "Break";
-                            
+                            angular.element( document.querySelector('#second')).removeClass('sec-div');
+                            angular.element( document.querySelector('#minute')).removeClass('min-div');
                             Timer.sound.play();
                         }
                     }
@@ -24,7 +25,8 @@
                         Timer.counter -= 1; 
                         if(Timer.counter == 0){
                             Timer.state = "Restart Pomodoro";
-                            
+                            angular.element( document.querySelector('#second')).removeClass('sec-div');
+                            angular.element( document.querySelector('#minute')).removeClass('min-div');
                             Timer.sound.play();
                         }
                     }

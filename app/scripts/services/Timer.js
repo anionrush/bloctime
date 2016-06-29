@@ -15,10 +15,14 @@
             switch(Timer.state) {
                 case "Start":
                     Timer.state = "Reset"
+                    angular.element( document.querySelector('#second')).addClass('sec-div');
+                    angular.element( document.querySelector('#minute')).addClass('min-div');
                     break;
                 case "Reset":
                     Timer.state = "Start"
                     Timer.counter = T_25;
+                    angular.element( document.querySelector('#second')).removeClass('sec-div');
+                    angular.element( document.querySelector('#minute')).removeClass('min-div');
                     break;
                 case "Break":
                     Timer.state = "Restart Pomodoro"
@@ -29,9 +33,13 @@
                         else{
                             Timer.counter = T_5;  
                         }
+                    angular.element( document.querySelector('#second')).addClass('sec-div');
+                    angular.element( document.querySelector('#minute')).addClass('min-div');
                     break;
                 case "Restart Pomodoro":
                     Timer.state = "Start"
+                    angular.element( document.querySelector('#second')).removeClass('sec-div');
+                    angular.element( document.querySelector('#minute')).removeClass('min-div');
                     Timer.counter = T_25;
                     break;
             }

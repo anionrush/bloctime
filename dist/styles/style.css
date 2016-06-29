@@ -42,3 +42,28 @@
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
 }
+
+/* Analog clock */
+
+#clock {
+  width: 378px;
+  height: 378px;
+  background-image: url('/assets/images/clockFace.png');
+}
+
+#clock div {
+  position: absolute;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.min-div {
+  animation: rotate 3600s infinite linear;
+}
+.sec-div {
+  animation: rotate 60s infinite linear;
+}
